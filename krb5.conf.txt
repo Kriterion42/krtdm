@@ -1,0 +1,29 @@
+# To opt out of the system crypto-policies configuration of krb5, remove the
+# symlink at /etc/krb5.conf.d/crypto-policies which will not be recreated.
+includedir /etc/krb5. conf.d/
+[logging]
+default =
+FILE: /var/tog/krb51ibs . log
+kdc = FILE: /var/log/krb5kdc. tog
+admin server = FILE: /var/log/kadmind. log
+[libdefaults]
+dns_lookup_realm = false
+ticket_lifetime = 24h
+renew lifetime = 7d
+forwardable = true
+rdns = false
+pkinit_anchors = FILE: /etc/pki/tls/certs/ca-bundle.crt
+spake_preauth_groups = edwards25519
+dns_canonicalize_hostname = fallback
+qualify_shortname = ""
+default ccache name = KEYRING:persistent:%{uid}
+udp_preference_timit = 0
+default realm = AU-TEAM.IRPO
+[realms]
+AU-TEAM. IRPO = {
+kdc = br-srv.au-team.irpo
+admin server = br-srv.au-team.irpo
+}
+[domain_realm]
+. au-team.irpo = AU-TEAM.IRPO
+au-team.irpo = AU-TEAM.IRPO
